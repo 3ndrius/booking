@@ -1,7 +1,8 @@
 {
     "env": {
         "MONGO_USER": "justme",
-        "MONGO_PASSWORD": "ZXBiGYndJ3POjjQn"
+        "MONGO_PASSWORD": "ZXBiGYndJ3POjjQn",
+        "MONGO_DB": "events-re-dev"
         
     }
 }
