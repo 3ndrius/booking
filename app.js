@@ -16,6 +16,26 @@ const app = express();
 // app.use(bodyParser.json());
 
 
+const user = userId => {
+    return User.findById(userId)
+    .then(user=>{
+        return {...user._doc, _id: user.id, createdEvents: events.bind(this, user._doc.createdEvents) }
+    })
+    .catch(err => {
+        throw err;
+    });
+};
+
+const events= eventIds => {
+    return Event.find({_id: {$in: eventIds}}).then(
+       events => {
+           return events.map(event => {
+               return {...event._doc, _id: event.id, creator: user.bind(this, event.creator)};
+           });
+       })
+       .catch(err=> {throw err})
+}
+
 // app.get('/', (req, res, next) => {
 //     res.send('Hello world');  
 // })
@@ -32,12 +52,14 @@ app.use(
                 description: String!
                 price: Float!
                 date: String!
+                creator: User!
             }
 
             type User {
                 _id: ID!
                 email: String!
                 password: String
+                createdEvents: [Event!]
             }
 
             input EventInput {
@@ -74,7 +96,8 @@ app.use(
                 return Event.find()
                 .then( events => {
                     return events.map(event => {
-                        return {...event._doc};
+                        return {...event._doc, creator: user.bind(this, event._doc.creator)
+                        };
                     });
                 })
                 .catch( err => {
@@ -88,14 +111,14 @@ app.use(
                         description: args.eventInput.description,
                         price: +args.eventInput.price,
                         date: new Date(args.eventInput.date),
-                        creator: '5ca22f30af338522306395d0'
+                        creator: '5ca2f030b542011e1016137d'
                 });
                 let createdEvent;
                 return event
                 .save()
                 .then( result => {
-                   createdEvent = {...result._doc};
-                   return User.findById('5ca22f30af338522306395d0')
+                   createdEvent = {...result._doc, creator: user.bind(this, result._doc.creator)};
+                   return User.findById('5ca2f030b542011e1016137d')
                    
                 }).then( 
                     user => {
