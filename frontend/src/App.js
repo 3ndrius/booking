@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Redirect,  Switch} from 'react-router-dom';
 import Auth from './pages/Auth';
 import Bookings from './pages/Bookings';
 import Events from './pages/Events';
+import MainNavigation from './components/Navigation/MainNavigation';
+
+
 
 class App extends Component {
   render() {
