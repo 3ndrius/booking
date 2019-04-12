@@ -1,0 +1,41 @@
+.main-navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3.5rem;
+    background: rgb(7, 116, 160);
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main-navigation__logo h1{
+    margin:0;
+    font-size:1.5rem;
+    padding:0;
+}
+.main-navigation__nav{
+
+}
+.main-navigation__list{
+    display: flex;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    
+}
+.main-navigation__item{
+    margin: 0 1rem;
+}
+.main-navigation__item a {
+    color:whitesmoke;
+    text-decoration: none;
+}
+.main-navigation__item a:hover,
+.main-navigation__item a:active, 
+.main-navigation__item a.active {
+    color:rgb(245, 234, 132);
+    
+}

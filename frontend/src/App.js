@@ -9,17 +9,20 @@ import MainNavigation from './components/Navigation/MainNavigation';
 
 
 
+
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
      <MainNavigation/>
-       <Switch>
+     <main className="main-content">
+     <Switch>
          <Redirect path="/" to="/auth" exact />
          <Route path="/auth" component={Auth} />
          <Route path="/events"  component={Events} />
          <Route path="/bookings" component={Bookings} />
        </Switch>
+     </main>
       </BrowserRouter>
     );
   }
