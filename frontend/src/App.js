@@ -13,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+     <MainNavigation/>
        <Switch>
          <Redirect path="/" to="/auth" exact />
          <Route path="/auth" component={Auth} />
