@@ -1,0 +1,32 @@
+.auth-form{
+    
+    max-width: 350px;
+    margin:0 auto;
+}
+
+
+.form-control {
+    display:flex;
+    flex-direction: column;   
+}
+.form-control input{
+    height: 30px;
+    margin:5px 0;
+}
+.form-action{
+    padding:20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    height: 35px;
+    color:white;
+    background:rgb(7, 116, 160);
+    border:none;
+    padding:5px 10px;
+}
+button:hover,
+button:active{
+    color:rgb(231, 233, 122);
+    cursor: pointer;
+}
