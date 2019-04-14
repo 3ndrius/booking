@@ -9,14 +9,19 @@ export default class Auth extends Component {
   }
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,
       [e.target.name]: e.target.value
     })
     
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    
+    const email = this.state.email;
+    const password = this.state.password;
+
+    if(email.trim().length === 0 || password.trim().length === 0) {
+      return ;
+    }
+    console.log("email",+ email, "password", password);
   }
 
   render() {
