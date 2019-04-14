@@ -13,6 +13,7 @@ export default class Auth extends Component {
     })
     
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const email = this.state.email;
@@ -21,8 +22,39 @@ export default class Auth extends Component {
     if(email.trim().length === 0 || password.trim().length === 0) {
       return ;
     }
-    console.log("email",+ email, "password", password);
-  }
+    console.log(email,password);
+    let requestBody = {
+      query: `
+       mutation {
+         createUser(userInput: {email: "${email}", password: "${password}" }) {
+           _id
+           email
+         }
+       }
+      `
+    };
+
+    fetch('http://localhost:8000/graphql', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error('Failed!');
+        }
+        return res.json();
+      })
+      .then(resData => {
+        console.log(resData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+   
+  };
 
   render() {
     return (
