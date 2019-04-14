@@ -4,8 +4,14 @@ import './Auth.css';
 export default class Auth extends Component {
 
   state = {
+    isLogin: true,
     email: '',
     password: ''
+  }
+  switchModeHandler = () => {
+    this.setState(prevState =>{
+      return {isLogin: !prevState.isLogin }
+    })
   }
   handleChange = (e) => {
     this.setState({
@@ -13,6 +19,7 @@ export default class Auth extends Component {
     })
     
   }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -23,15 +30,30 @@ export default class Auth extends Component {
       return ;
     }
     console.log(email,password);
+
     let requestBody = {
       query: `
-       mutation {
-         createUser(userInput: {email: "${email}", password: "${password}" }) {
-           _id
-           email
-         }
-       }
+        query {
+          login(email: "${email}", password: "${password}") {
+            userId
+            token
+            tokenExpiration
+          }
+        }
       `
+    };
+
+    if (!this.state.isLogin) {
+      requestBody = {
+        query: `
+          mutation {
+            createUser(userInput: {email: "${email}", password: "${password}"}) {
+              _id
+              email
+            }
+          }
+        `
+      };
     };
 
     fetch('http://localhost:8000/graphql', {
@@ -69,7 +91,7 @@ export default class Auth extends Component {
       </div>
       <div className="form-action">
         <button type="submit">Submit</button>
-        <button type="button">Switch to Signup</button>
+        <button type="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? "Signin" : "Signup"} </button>
       </div>
     </form>
     )
