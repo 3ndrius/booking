@@ -11,10 +11,23 @@ import AuthContext from './context/auth-context';
 
 
 class App extends Component {
+
+  state ={
+    token: null,
+    userId: null
+  }
+  login = (token, userId, tokenExpiration) => {
+    this.setState({token:token, userId: userId});
+  }
+  logout = () => {
+    this.setState({token: null, userId:null})
+  }
   render() {
     return (
       <BrowserRouter>
-      <AuthContext.Provider>
+      <AuthContext.Provider value={
+        {token: this.state.token, userId: this.state.userId , login: this.login, logout:this.logout}
+      }>
         <MainNavigation/>
         <main className="main-content">
         <Switch>
