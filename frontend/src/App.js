@@ -30,13 +30,13 @@ class App extends Component {
       }>
         <MainNavigation/>
         <main className="main-content">
-        <Switch>
-           {!this.state.token &&  <Redirect path="/" to="/auth" exact />}
+        <Switch>     
            {this.state.token &&  <Redirect path="/" to="/events" exact />}
            {this.state.token &&  <Redirect path="/auth" to="/events" exact />}
            {!this.state.token && <Route path="/auth" component={Auth} />}
             <Route path="/events"  component={Events} />
            {this.state.token && <Route path="/bookings" component={Bookings} />}
+           {!this.state.token &&  <Redirect  to="/auth" exact />}
           </Switch>
         </main>
      </AuthContext.Provider>
