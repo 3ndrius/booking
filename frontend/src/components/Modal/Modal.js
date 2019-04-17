@@ -1,9 +1,10 @@
 import React from 'react'
 
+import './Modal.css';
 export default function Modal(props) {
   return (
     <div className="modal">
-      <header>{props.title}</header>
+      <header className="modal__header">{props.title}</header>
       <section className="modal__content">
             {props.children}
       </section>

@@ -1,0 +1,15 @@
+.modal{
+    width:50%;
+    height: 300px;
+    position: fixed;
+    margin:0 auto;
+    top:20vh;
+    left:0;
+    right:0;
+    background:rgb(212, 217, 223);
+    box-shadow: rgba(0, 0,0, 0.25);
+}
+.modal__header{
+    background:rgb(38, 114, 139);
+    padding:2em;
+}
