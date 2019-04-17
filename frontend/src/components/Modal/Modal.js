@@ -9,8 +9,8 @@ export default function Modal(props) {
             {props.children}
       </section>
       <section className="modal__actions">
-       {props.canCancel && <button className="btn">Cancel</button>}
-        {props.canConfirm && <button className="btn">Confirm</button>}
+       {props.canCancel || <button className="btn">Cancel</button>}
+        {props.canConfirm || <button className="btn">Confirm</button>}
       </section>
     </div>
   )
