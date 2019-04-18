@@ -58,7 +58,7 @@ export default class Events extends Component {
           </div>
           <div className="form-control">
             <label htmlFor="date">Date</label>
-            <input type="date" id="date" ref={this.dateElRef}/>
+            <input type="datetime-local" id="date" ref={this.dateElRef}/>
           </div>
           <div className="form-control">
             <label htmlFor="description">Description</label>
