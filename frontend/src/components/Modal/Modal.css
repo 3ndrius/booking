@@ -1,5 +1,6 @@
 .modal{
-    width:50%;
+    width:90%;
+    max-width: 800px;
     height: 650px;
     position: fixed;
     margin:0 auto;
