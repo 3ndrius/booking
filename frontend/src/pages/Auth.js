@@ -11,7 +11,6 @@ export default class Auth extends Component {
 
   static contextType = AuthContext;
 
-
   switchModeHandler = () => {
     this.setState(prevState =>{
       return {isLogin: !prevState.isLogin }
@@ -23,7 +22,6 @@ export default class Auth extends Component {
     })
     
   }
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +79,6 @@ export default class Auth extends Component {
         console.log(err);
       });
 
-   
   };
 
   render() {

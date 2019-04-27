@@ -10,7 +10,7 @@ const MainNavigation = (props) => (
   {(context)=> {      
   return (
     <header className="main-navigation">
-        <div className="nain-navigation__logo">
+        <div className="main-navigation__logo">
             <h1>Events</h1>
         </div>
        <nav className="main-navigation__bar">

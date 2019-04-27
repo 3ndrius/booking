@@ -1,5 +1,6 @@
 .modal{
-    width:50%;
+    width:90%;
+    max-width: 800px;
     height: 650px;
     position: fixed;
     margin:0 auto;
@@ -12,8 +13,11 @@
    
 }
 .modal__header{
-    background:rgb(38, 114, 139);
+    background:rgb(14, 59, 143);
     padding:2em;
+    color:whitesmoke;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 .modal__content{
     padding:5%;
@@ -27,12 +31,14 @@
 
 }   
 .btn{
-    background:rgb(35, 134, 141);
-    margin: 0 15px;
-    padding:10px;
+    background:rgb(14, 59, 143);
+    margin: 0 5% 0 0;
+    
 }
 
 #description{
-    width:100%;
+    width:99%;
+    margin-top:8px;
+    
     
 }

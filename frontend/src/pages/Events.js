@@ -171,10 +171,11 @@ export default class Events extends Component {
         </form>
       </Modal>}
       {this.state.creating && <Backdrop/>}
+
       {this.context.token && (
           <div className="events-control">
-            <p>Share your own Events!</p>
-            <button className="btn" onClick={this.startCreateEventHandler}>
+            <p className="events-intro">Share your own Events!</p>
+            <button className="btn-event" onClick={this.startCreateEventHandler}>
               Create Event
             </button>
           </div>
