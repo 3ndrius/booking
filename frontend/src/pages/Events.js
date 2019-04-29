@@ -175,7 +175,7 @@ export default class Events extends Component {
             </button>
           </div>
         )}
-      <EventList events={this.state.events} />
+      <EventList events={this.state.events} authUserId={this.context.userId} />
 
       </React.Fragment>
     )

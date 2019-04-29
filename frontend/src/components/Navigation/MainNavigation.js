@@ -18,7 +18,7 @@ const MainNavigation = (props) => (
             {!context.token && <li className="main-navigation__item"> <NavLink to="/auth"> Authenticate </NavLink> </li>}
             <li className="main-navigation__item"> <NavLink to="/events"> Events </NavLink> </li>
             {context.token && <li className="main-navigation__item"> <NavLink to="/bookings"> Bookings </NavLink> </li>}
-            {context.token && <li className="main-navigation__item"> <NavLink onClick={context.logout}> Logout </NavLink> </li>}
+            {context.token && <li className="main-navigation__item"> <NavLink onClick={context.logout} to="events"> Logout </NavLink> </li>}
         </ul>
        </nav>
     </header>

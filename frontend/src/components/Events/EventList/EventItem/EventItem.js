@@ -11,8 +11,7 @@ export default function EventItem(props) {
                 <h2>$10.99</h2>
             </div>
             <div>
-                <button className="btn">View details</button>
-                <p>You are creator of this event</p>
+                {props.userId === props.creatorId ? <p>You are owner of the event</p> : <button className="btn">details</button>} 
             </div>
           </li>
         );
