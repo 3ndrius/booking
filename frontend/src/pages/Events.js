@@ -11,7 +11,8 @@ export default class Events extends Component {
 
   state = {
     creating: false,
-    events: []
+    events: [],
+    isLoading: false
   };
 
   static contextType = AuthContext;  // context api for cred
@@ -114,6 +115,7 @@ export default class Events extends Component {
   }
 
   fetchEvents() {
+    this.setState({isLoading:true});
     const requestBody = {
       query: `
           query {
@@ -147,10 +149,15 @@ export default class Events extends Component {
       })
       .then(resData => {
         const events = resData.data.events;
-        this.setState({ events: events });
+        this.setState({ 
+          events: events ,
+          isLoading:false
+        });
+        
       })
       .catch(err => {
         console.log(err);
+        this.setState({isLoading:false});
       });
   }
   render() {
@@ -189,7 +196,10 @@ export default class Events extends Component {
             </button>
           </div>
         )}
-      <EventList events={this.state.events} authUserId={this.context.userId} />
+        {
+          this.state.isLoading ? <div className="wrapper"><div class="lds-ripple"><div></div><div></div></div> </div>: 
+        <EventList events={this.state.events} authUserId={this.context.userId} /> 
+        }
 
       </React.Fragment>
     )
