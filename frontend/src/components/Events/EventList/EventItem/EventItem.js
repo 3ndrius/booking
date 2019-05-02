@@ -11,7 +11,8 @@ export default function EventItem(props) {
                 <h2>${props.price} | { new Date(props.date).toLocaleDateString('pl-PL') } </h2>
             </div>
             <div>
-                {props.userId === props.creatorId ? <p>You are owner of the event</p> : <button className="btn">details</button>} 
+                {props.userId === props.creatorId ? <p>You are owner of the event</p> :
+                 <button className="btn" onClick={props.onDetail.bind(this, props.eventId)}>details</button>} 
             </div>
           </li>
         );
