@@ -6,6 +6,7 @@ import Modal from './../components/Modal/Modal';
 import Backdrop from './../components/Backdrop/Backdrop';
 import AuthContext from '../context/auth-context';
 import EventList from '../components/Events/EventList/EventList';
+import Loader from '../components/Loader/Loader';
 
 export default class Events extends Component {
 
@@ -197,7 +198,7 @@ export default class Events extends Component {
           </div>
         )}
         {
-          this.state.isLoading ? <div className="wrapper"><div class="lds-ripple"><div></div><div></div></div> </div>: 
+          this.state.isLoading ? <Loader /> : 
         <EventList events={this.state.events} authUserId={this.context.userId} /> 
         }
 
