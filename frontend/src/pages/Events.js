@@ -6,12 +6,15 @@ import Modal from './../components/Modal/Modal';
 import Backdrop from './../components/Backdrop/Backdrop';
 import AuthContext from '../context/auth-context';
 import EventList from '../components/Events/EventList/EventList';
+import Loader from '../components/Loader/Loader';
 
 export default class Events extends Component {
 
   state = {
     creating: false,
-    events: []
+    events: [],
+    isLoading: false,
+    selectedEvent: null
   };
 
   static contextType = AuthContext;  // context api for cred
@@ -83,7 +86,21 @@ export default class Events extends Component {
         return res.json();
       })
       .then(resData => {
-        this.fetchEvents();
+        // this.fetchEvents();
+        this.setState(prevState => {
+          const updatedEvents = [...prevState.events];
+          updatedEvents.push({
+            _id: resData.data.createEvent._id,
+            title: resData.data.createEvent.title,
+            description: resData.data.createEvent.description,
+            date: resData.data.createEvent.date,
+            price: resData.data.createEvent.price,
+            creator: {
+              _id: this.context.userId
+            }
+          });
+          return { events: updatedEvents };
+        });
       })
       .catch(err => {
         console.log(err);
@@ -94,12 +111,12 @@ export default class Events extends Component {
   };
 
   modalCancelHandler = () => {
-    this.setState({
-      creating:false
-    })
+    this.setState({ creating: false, selectedEvent: null });
+    
   }
 
   fetchEvents() {
+    this.setState({isLoading:true});
     const requestBody = {
       query: `
           query {
@@ -133,19 +150,37 @@ export default class Events extends Component {
       })
       .then(resData => {
         const events = resData.data.events;
-        this.setState({ events: events });
+        this.setState({ 
+          events: events ,
+          isLoading:false
+        });
+        
       })
       .catch(err => {
         console.log(err);
+        this.setState({isLoading:false});
       });
   }
+
+  showDetailHandler = eventId => {
+    this.setState(prevState => {
+      const selectedEvent = prevState.events.find(e => e._id === eventId);
+      return { selectedEvent: selectedEvent };
+    });
+  };
   render() {
 
    
 
     return (
       <React.Fragment>
-      {this.state.creating && <Modal title="Add Event" canCancel canConfirm onCancel={this.modalCancelHandler} onConfirm={this.modalConfirmHandler} >
+      {this.state.creating && <Modal title="Add Event"
+      canCancel 
+      canConfirm
+      onCancel={this.modalCancelHandler}
+      onConfirm={this.modalConfirmHandler}
+      confirmText = "Confirm"
+       >
         <form>
           <div className="form-control">
             <label htmlFor="title">Ttitle</label>
@@ -165,7 +200,26 @@ export default class Events extends Component {
           </div>
         </form>
       </Modal>}
-      {this.state.creating && <Backdrop/>}
+      {(this.state.creating || this.state.selectedEvent ) && <Backdrop/>}
+
+
+      {this.state.selectedEvent && (
+          <Modal
+            title={this.state.selectedEvent.title}
+            canCancel
+            canConfirm
+            onCancel={this.modalCancelHandler}
+            onConfirm={this.bookEventHandler}
+            confirmText="Book"
+          >
+            <h1>{this.state.selectedEvent.title}</h1>
+            <h2>
+              ${this.state.selectedEvent.price} -{' '}
+              {new Date(this.state.selectedEvent.date).toLocaleDateString()}
+            </h2>
+            <p>{this.state.selectedEvent.description}</p>
+          </Modal>
+        )}
 
       {this.context.token && (
           <div className="events-control">
@@ -175,7 +229,10 @@ export default class Events extends Component {
             </button>
           </div>
         )}
-      <EventList events={this.state.events} authUserId={this.context.userId} />
+        {
+          this.state.isLoading ? <Loader /> : 
+        <EventList events={this.state.events} authUserId={this.context.userId} onViewDetail={this.showDetailHandler} /> 
+        }
 
       </React.Fragment>
     )

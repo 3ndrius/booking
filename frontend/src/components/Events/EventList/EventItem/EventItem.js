@@ -8,10 +8,11 @@ export default function EventItem(props) {
           <li key={props.eventId} className="events__list-item">
             <div className="eventItem__header"> 
                 <h1>{props.title}</h1>
-                <h2>$10.99</h2>
+                <h2>${props.price} | { new Date(props.date).toLocaleDateString('pl-PL') } </h2>
             </div>
             <div>
-                {props.userId === props.creatorId ? <p>You are owner of the event</p> : <button className="btn">details</button>} 
+                {props.userId === props.creatorId ? <p>You are owner of the event</p> :
+                 <button className="btn" onClick={props.onDetail.bind(this, props.eventId)}>details</button>} 
             </div>
           </li>
         );
