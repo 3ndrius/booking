@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+import Loader from './../components/Loader/Loader';
 
+import AuthContext from '../context/auth-context';
 export default class Bookings extends Component {
 
   state = {
     isLoading: false,
     bookings: []
   }
+  static contextType = AuthContext;
+  
   componentDidMount = () =>{
     this.fetchBookings();
   }
@@ -52,9 +56,20 @@ export default class Bookings extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Bookings</h1>
-      </div>
+      <React.Fragment>
+      {this.state.isLoading ? (
+        <Loader />
+      ) : (
+        <ul>
+          {this.state.bookings.map(booking => (
+            <li key={booking._id}>
+              {booking.event.title} -{' '}
+              {new Date(booking.createdAt).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      )}
+    </React.Fragment>
     )
   }
 }
