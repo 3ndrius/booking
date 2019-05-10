@@ -12,7 +12,7 @@ export default function BookingList(props) {
                     {new Date(booking.createdAt).toLocaleDateString()}
                 </div>
                 <div className="bookings__item-actions">
-                    <button className="btn">
+                    <button className="btn" onClick={props.onDelete(this, booking._id)}>
                         Cancel
                     </button>
                 </div>
