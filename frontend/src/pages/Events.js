@@ -175,6 +175,7 @@ export default class Events extends Component {
     });
   };
 
+
   bookEventHandler =() =>{
     if (!this.context.token) {
       this.setState({ selectedEvent: null });
@@ -217,6 +218,7 @@ export default class Events extends Component {
         console.log(err);
       });
   };
+
   render() {
 
    
@@ -259,7 +261,7 @@ export default class Events extends Component {
             canConfirm
             onCancel={this.modalCancelHandler}
             onConfirm={this.bookEventHandler}
-            confirmText={this.context.token ? 'Book' : 'Confirm'}
+            confirmText="Book"
           >
             <h1>{this.state.selectedEvent.title}</h1>
             <h2>

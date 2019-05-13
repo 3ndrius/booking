@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loader from './../components/Loader/Loader';
+
 
 import AuthContext from '../context/auth-context';
 import BookingList from '../components/Bookings/BookingList/BookingList';
