@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 import AuthContext from '../context/auth-context';
 import BookingList from '../components/Bookings/BookingList/BookingList';
 import BookingsChart from './../components/Bookings/BookingsChart/BookingsChart';
-
 import BookingsControls from './../components/Bookings/BookingsControls/BookingsControls';
+import  Loader from '../components/Loader/Loader'
 export default class Bookings extends Component {
 
   state = {
