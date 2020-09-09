@@ -6,7 +6,7 @@ App that allow users create yours account and login. User can create own event o
 
 ## SCREENSHOOT
 
-![prev]()
+![prev](https://github.com/3ndrius/booking/blob/master/prev.png?raw=true)
 
 ## TECH_STACK 
 
