@@ -1,7 +1,5 @@
 # BOOKING_EVENT
 
-## DESCRIPTION
-
 App that allow users create yours account and login. User can create own event or subscribe available. Registered event are displayed in events panel.
 
 ## SCREENSHOOT
